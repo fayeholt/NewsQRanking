@@ -178,6 +178,7 @@ if __name__ == "__main__":
                                       "it. More than a quarter of those questioned (26 per cent) said that their household incomes had gone down as a "
                                       "result of the outbreak. And some per cent the equivalent of more than 900,000 families or sole-person households "
                                       "said their income had fallen by more than half. The poll of 1,500 people was conducted as Mr Johnson struggled to maintain "
+                                    
                                       "his grip on his regional coronavirus policy, with councils in the north rejecting his efforts to tighten local restrictions and"
                                       " Labours Sir Keir Starmer demanding a national circuit-breaker lockdown. It found that just per cent now trust the prime"
                                       " minister to lead the response to the pandemic, against per who do not an overall rating of. For Mr Hancock, "
@@ -269,7 +270,7 @@ if __name__ == "__main__":
     random.shuffle(dataset)
 
     train_data = dataset[:7000]
-    test_data = dataset[7000:]
+    test_data = dataset[3000:]
     print(type(train_data))
 
     classifier = NaiveBayesClassifier.train(train_data)
@@ -278,12 +279,15 @@ if __name__ == "__main__":
 
     print(classifier.show_most_informative_features(10))
 
-    custom_article = ""
-
+    custom_article = "Andy Burnham said in a letter to the PM and other party leaders that Parliament should hold an urgent debate to end the deadlock. " \
+                     "Later the mayor said he had a with Mr Johnson's chief strategic adviser. Earlier, minister Michael Gove said:" \
+                     "We hope to agree a new approach. Mr Gove said the government wanted the best for Greater Manchester and that he hoped " \
+                     "we can find a way through together But he criticised what he described as the  of politicians in that region and warned that if an agreement could not be reached the government would  having to impose restrictions. " \
+                                                                                                                                                                                                                                                                                                                                                         "Manchester, including Mr Burnham, have rejected a move to England's tier three alert level without better financial support.is not just a Greater Manchester issue"
     custom_tokens = remove_noise(word_tokenize(custom_article))
 
     sentimentAnalysis = classifier.classify(dict([token, True] for token in custom_tokens))
-    print(custom_article, sentimentAnalysis)
+    print(sentimentAnalysis)
 
     #adjust rank based on output
     rank = None
