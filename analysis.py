@@ -8,11 +8,11 @@ from nltk import FreqDist, classify, NaiveBayesClassifier
 
 import re, string, random
 
-def remove_noise(tweet_tokens, stop_words = ()):
+def remove_noise(article_tokens, stop_words = ()):
 
     cleaned_tokens = []
 
-    for token, tag in pos_tag(tweet_tokens):
+    for token, tag in pos_tag(article_tokens):
         # remove special characters, @'s, numbers --> data still needs to be cleaned more
         token = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+#]|[!*\(\),]|'\
                        '(?:%[0-9a-fA-F][0-9a-fA-F]))+','', token)
@@ -41,8 +41,8 @@ def get_all_words(cleaned_tokens_list):
             yield token
 
 def get_tokens_for_model(cleaned_tokens_list):
-    for tweet_tokens in cleaned_tokens_list:
-        yield dict([token, True] for token in tweet_tokens)
+    for tokens in cleaned_tokens_list:
+        yield dict([token, True] for token in tokens)
 
 if __name__ == "__main__":
 
